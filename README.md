@@ -1,18 +1,18 @@
 # PROJECT-cash-curve-ust-ws
 
-Treasury curve and portfolio risk workstation built to model the structural mechanics of cash U.S. Treasury exposure.
+Treasury curve and portfolio risk workstation focused on modeling the structural mechanics of cash U.S. Treasury exposure.
 
-This project began as a simple duration and convexity calculator and evolved into a multi-node Treasury portfolio analytics engine focused on:
+This project began as a simple duration and convexity calculator and gradually evolved into a multi-node Treasury portfolio analytics engine focused on:
 
 - Yield curve structure
 - DV01 normalization
 - Convexity-adjusted pricing
 - Portfolio risk aggregation
-- Curve steepening/flattening mechanics
+- Curve steepening and flattening mechanics
 - Funding-adjusted carry
 - Relative value intuition across Treasury maturities
 
-The goal of this project was not to recreate institutional infrastructure, but instead to build a clean and transparent educational framework that demonstrates the underlying mechanics of Treasury portfolio risk in a visually intuitive way.
+The purpose of this project was not to recreate institutional infrastructure, but instead to build a clean and transparent educational framework that demonstrates Treasury portfolio mechanics in a visually intuitive way.
 
 ---
 
@@ -128,7 +128,7 @@ into independent structural dimensions.
 
 # Carry Engine
 
-One of the major focuses of the project was distinguishing between:
+One of the primary focuses of the project was distinguishing between:
 
 - headline yield
 - actual economic carry
@@ -153,9 +153,10 @@ The project intentionally emphasizes carry over raw yield as a more meaningful r
 
 # DV01 Hedge Ratios
 
-The workstation also calculates simplified DV01-neutral hedge ratios across Treasury maturities:
+The workstation also calculates simplified DV01-neutral hedge ratios across Treasury maturities.
 
-Examples:
+Examples include:
+
 - 2s5s
 - 2s10s
 - 5s30s
@@ -193,6 +194,7 @@ The focus instead is:
 > simple, honest, useful Treasury risk intuition
 
 The workstation was designed to remain:
+
 - visually interpretable
 - mathematically transparent
 - educationally intuitive
