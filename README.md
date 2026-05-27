@@ -12,7 +12,7 @@ This project began as a simple duration and convexity calculator and gradually e
 - Funding-adjusted carry
 - Relative value intuition across Treasury maturities
 
-The purpose of this project was not to recreate institutional infrastructure, but instead to build a clean and transparent educational framework that demonstrates Treasury portfolio mechanics in a visually intuitive way.
+The purpose of this project was not to recreate institutional infrastructure, but instead to build a clean and transparent educational framework demonstrating Treasury portfolio mechanics in a visually intuitive way.
 
 ---
 
@@ -41,27 +41,20 @@ Users can apply custom basis point shocks to individual maturities in order to o
 
 # Duration and Convexity Pricing
 
-Bond prices are adjusted using a modified duration and convexity approximation:
+Bond prices are adjusted using a modified duration and convexity approximation.
 
-\[
-P_{new}
-=
-P_0
-\left(
-1
--
-D_{mod}\Delta y
-+
-\frac12 C(\Delta y)^2
-\right)
-\]
+New Price Formula:
+
+```text
+New Price = Price × (1 - Mod × ΔYield + 0.5 × Convexity × (ΔYield²))
+```
 
 Where:
 
-- \(P_0\) = initial bond price
-- \(D_{mod}\) = modified duration
-- \(C\) = convexity
-- \(\Delta y\) = yield shock in decimal form
+- Price = initial bond price
+- Mod = modified duration
+- Convexity = convexity estimate
+- ΔYield = yield shock in decimal form
 
 This allows the workstation to estimate nonlinear bond price behavior under changing rate environments.
 
@@ -69,29 +62,21 @@ This allows the workstation to estimate nonlinear bond price behavior under chan
 
 # Local Post-Shock DV01
 
-Rather than keeping DV01 static after a rate move, the project estimates a new local modified duration after the shock:
+Rather than keeping DV01 static after a rate move, the project estimates a new local modified duration after the shock.
 
-\[
-Mod_{new}
-=
-Mod_{old}
--
-Convexity \times \Delta y
-\]
+Updated Local Duration:
 
-This updated local duration is then used to estimate post-shock DV01:
+```text
+New Mod ≈ Old Mod - (Convexity × ΔYield)
+```
 
-\[
-DV01
-=
-\frac{
-Price \times Mod \times Notional
-}{
-100 \times 10000
-}
-\]
+Post-Shock DV01:
 
-This allows the system to demonstrate how Treasury sensitivity itself changes after rate moves due to convexity effects.
+```text
+DV01 = (Price × Mod × Notional) / (100 × 10000)
+```
+
+This allows the workstation to demonstrate how Treasury sensitivity itself changes after rate moves due to convexity effects.
 
 ---
 
@@ -105,15 +90,11 @@ The workstation aggregates Treasury exposure into portfolio-level metrics:
 - Total Carry
 - Total Return
 
-Where:
+Total Return:
 
-\[
-TotalReturn
-=
-ShockPnL
-+
-Carry
-\]
+```text
+Total Return = Shock P/L + Carry
+```
 
 This separates:
 
@@ -135,15 +116,9 @@ One of the primary focuses of the project was distinguishing between:
 
 Carry is estimated using:
 
-\[
-Carry
-=
-(Yield - FundingRate)
-\times
-Notional
-\times
-\frac{DaysHeld}{365}
-\]
+```text
+Carry = (Yield - Funding Rate) × Notional × (Days Held / 365)
+```
 
 This demonstrates how financing conditions can materially alter Treasury portfolio economics even when yield remains unchanged.
 
@@ -164,15 +139,9 @@ Examples include:
 
 Using:
 
-\[
-HedgeRatio
-=
-\frac{
-LongerMaturityDV01
-}{
-ShorterMaturityDV01
-}
-\]
+```text
+Hedge Ratio = Longer Maturity DV01 / Shorter Maturity DV01
+```
 
 This visually demonstrates how duration risk scales nonlinearly across the curve.
 
